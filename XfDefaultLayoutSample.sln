@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "XfDefaultLayoutSample", "XfDefaultLayoutSample\XfDefaultLayoutSample.fsproj", "{4E74BA35-3BBA-4C28-8919-61BB355950FE}"
+EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "XfDefaultLayoutSample.Droid", "Droid\XfDefaultLayoutSample.Droid.fsproj", "{5E5DC02E-026F-48A0-A199-A79087570FEF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E74BA35-3BBA-4C28-8919-61BB355950FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E74BA35-3BBA-4C28-8919-61BB355950FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E74BA35-3BBA-4C28-8919-61BB355950FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E74BA35-3BBA-4C28-8919-61BB355950FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E5DC02E-026F-48A0-A199-A79087570FEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E5DC02E-026F-48A0-A199-A79087570FEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E5DC02E-026F-48A0-A199-A79087570FEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E5DC02E-026F-48A0-A199-A79087570FEF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
