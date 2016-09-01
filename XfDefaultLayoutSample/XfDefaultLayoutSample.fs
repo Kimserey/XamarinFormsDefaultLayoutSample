@@ -2,6 +2,42 @@
 
 open Xamarin.Forms
 
+type AbsolutePageExample() as self =
+    inherit ContentPage(Title = "Absolute example")
+
+    let layout = 
+        let layout = new AbsoluteLayout()
+        let box  = new BoxView(BackgroundColor = Color.Blue)
+        layout.Children.Add(box,  new Rectangle(0., 0., 0.25, 0.25), AbsoluteLayoutFlags.All)
+        layout
+
+    do
+        self.Content <- layout
+
+type AbsolutePageExample'() as self =
+    inherit ContentPage(Title = "Absolute example")
+
+    let layout = 
+        let layout = new AbsoluteLayout()
+        let box  = new BoxView(BackgroundColor = Color.Blue)
+        layout.Children.Add(box,  new Rectangle(0.5, 0.5, 0.25, 0.25), AbsoluteLayoutFlags.All)
+        layout
+
+    do
+        self.Content <- layout
+
+type AbsolutePageExample''() as self =
+    inherit ContentPage(Title = "Absolute example")
+
+    let layout = 
+        let layout = new AbsoluteLayout()
+        let box  = new BoxView(BackgroundColor = Color.Blue)
+        layout.Children.Add(box,  new Rectangle(1., 1., 0.25, 0.25), AbsoluteLayoutFlags.All)
+        layout
+
+    do
+        self.Content <- layout
+
 type AbsolutePage() as self =
     inherit ContentPage(Title = "Absolute")
 
@@ -76,6 +112,9 @@ type TabPage() as self =
     inherit TabbedPage()
 
     do
+        self.Children.Add(new AbsolutePageExample())
+        self.Children.Add(new AbsolutePageExample'())
+        self.Children.Add(new AbsolutePageExample''())
         self.Children.Add(new AbsolutePage())
         self.Children.Add(new RelativePage())
 
