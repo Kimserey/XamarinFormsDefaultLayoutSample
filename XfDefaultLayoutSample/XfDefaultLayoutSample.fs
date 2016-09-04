@@ -2,8 +2,35 @@
 
 open Xamarin.Forms
 
+type GridPageExample() as self =
+    inherit ContentPage(Title = "Grid example")
+
+    let layout =
+        let grid = new Grid()
+        grid.RowDefinitions.Add(new RowDefinition())
+        grid.RowDefinitions.Add(new RowDefinition())
+        grid.RowDefinitions.Add(new RowDefinition())
+        grid.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1., GridUnitType.Star)))
+        grid.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1.5, GridUnitType.Star)))
+        grid.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1.5, GridUnitType.Star)))
+
+        let box1 = new BoxView(BackgroundColor = Color.Blue)
+        let box2 = new BoxView(BackgroundColor = Color.Aqua)
+        let box3 = new BoxView(BackgroundColor = Color.Yellow)
+        let box4 = new BoxView(BackgroundColor = Color.Gray)
+
+        grid.Children.Add(box1, 0, 0, 0, 0)
+        grid.Children.Add(box2, 0, 0, 0, 0)
+        grid.Children.Add(box3, 0, 0, 0, 0)
+        grid.Children.Add(box4, 0, 0, 0, 0)
+
+        grid
+
+    do
+        self.Content <- layout
+
 type AbsolutePageExample() as self =
-    inherit ContentPage(Title = "Absolute example")
+    inherit ContentPage(Title = "Absolute example 0.0")
 
     let layout = 
         let layout = new AbsoluteLayout()
@@ -15,7 +42,7 @@ type AbsolutePageExample() as self =
         self.Content <- layout
 
 type AbsolutePageExample'() as self =
-    inherit ContentPage(Title = "Absolute example")
+    inherit ContentPage(Title = "Absolute example 0.5")
 
     let layout = 
         let layout = new AbsoluteLayout()
@@ -27,7 +54,7 @@ type AbsolutePageExample'() as self =
         self.Content <- layout
 
 type AbsolutePageExample''() as self =
-    inherit ContentPage(Title = "Absolute example")
+    inherit ContentPage(Title = "Absolute example 1.0")
 
     let layout = 
         let layout = new AbsoluteLayout()
@@ -117,6 +144,7 @@ type TabPage() as self =
         self.Children.Add(new AbsolutePageExample''())
         self.Children.Add(new AbsolutePage())
         self.Children.Add(new RelativePage())
+        self.Children.Add(new GridPageExample())
 
 type App() as self =
     inherit Application()
