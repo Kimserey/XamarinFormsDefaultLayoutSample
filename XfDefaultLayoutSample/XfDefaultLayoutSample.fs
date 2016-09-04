@@ -11,18 +11,18 @@ type GridPageExample() as self =
         grid.RowDefinitions.Add(new RowDefinition())
         grid.RowDefinitions.Add(new RowDefinition())
         grid.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1., GridUnitType.Star)))
-        grid.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1.5, GridUnitType.Star)))
-        grid.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1.5, GridUnitType.Star)))
+        grid.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1., GridUnitType.Star)))
+        grid.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1., GridUnitType.Star)))
 
         let box1 = new BoxView(BackgroundColor = Color.Blue)
         let box2 = new BoxView(BackgroundColor = Color.Aqua)
         let box3 = new BoxView(BackgroundColor = Color.Yellow)
         let box4 = new BoxView(BackgroundColor = Color.Gray)
 
-        grid.Children.Add(box1, 0, 0, 0, 0)
-        grid.Children.Add(box2, 0, 0, 0, 0)
-        grid.Children.Add(box3, 0, 0, 0, 0)
-        grid.Children.Add(box4, 0, 0, 0, 0)
+        grid.Children.Add(box1, 0, 1, 0, 3)
+        grid.Children.Add(box2, 1, 3, 0, 1)
+        grid.Children.Add(box3, 1, 3, 1, 2)
+        grid.Children.Add(box4, 1, 3, 2, 3)
 
         grid
 
@@ -139,12 +139,12 @@ type TabPage() as self =
     inherit TabbedPage()
 
     do
+        self.Children.Add(new GridPageExample())
         self.Children.Add(new AbsolutePageExample())
         self.Children.Add(new AbsolutePageExample'())
         self.Children.Add(new AbsolutePageExample''())
         self.Children.Add(new AbsolutePage())
         self.Children.Add(new RelativePage())
-        self.Children.Add(new GridPageExample())
 
 type App() as self =
     inherit Application()
