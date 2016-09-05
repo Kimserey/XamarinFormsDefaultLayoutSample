@@ -13,3 +13,7 @@ Example of implementation of the different layouts available in Xamarin.Forms
 ## 3. Grid layout
 
 ![grid layout](https://github.com/Kimserey/XamarinFormsDefaultLayoutSample/blob/master/img/grid.png?raw=true)
+
+## 4. ListView with custom cells
+
+![grid layout](https://github.com/Kimserey/XamarinFormsDefaultLayoutSample/blob/master/img/listview.png?raw=true)
