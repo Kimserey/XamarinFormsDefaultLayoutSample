@@ -6,18 +6,19 @@ type ListPageExample() as self =
     inherit ContentPage(Title = "List example")
 
     let priceLayout (thumb: string) color (storeBindingPath: string) (priceBindingPath: string) =
-        let layout = new AbsoluteLayout()
+        let layout = new Grid()
+        layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1., GridUnitType.Star)))
+        layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1., GridUnitType.Star)))
+        layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(1., GridUnitType.Star)))
 
-        let innerLayout = new AbsoluteLayout() 
-        let image = new Image(Source = FileImageSource.op_Implicit thumb)
+        let image = new Image(Source = FileImageSource.op_Implicit thumb, Margin = new Thickness(5.))
         let store = new Label(TextColor = color, HorizontalOptions = LayoutOptions.Start, VerticalOptions = LayoutOptions.Center)
         let price = new Label(TextColor = color, HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Center)
         store.SetBinding(Label.TextProperty, storeBindingPath)
         price.SetBinding(Label.TextProperty, priceBindingPath, stringFormat = "{0:C2}")
-        innerLayout.Children.Add(image, new Rectangle(0., 0., 0.3, 1.), AbsoluteLayoutFlags.All)
-        innerLayout.Children.Add(store, new Rectangle(1., 0., 0.7, 1.), AbsoluteLayoutFlags.All)
-        layout.Children.Add(innerLayout, new Rectangle(0., 0., 0.5, 1.), AbsoluteLayoutFlags.All)
-        layout.Children.Add(price, new Rectangle(1., 0., 0.5, 1.), AbsoluteLayoutFlags.All)
+        layout.Children.Add(image, 0, 0)
+        layout.Children.Add(store, 1, 0)
+        layout.Children.Add(price, 2, 0)
 
         layout
 
