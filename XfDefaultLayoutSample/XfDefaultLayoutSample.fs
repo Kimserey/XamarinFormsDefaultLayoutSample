@@ -5,15 +5,29 @@ open Xamarin.Forms
 type ListPageExample() as self =
     inherit ContentPage(Title = "List example")
 
+    let priceLayout (thumb: string) color (storeBindingPath: string) (priceBindingPath: string) =
+        let layout = new AbsoluteLayout()
+
+        let innerLayout = new AbsoluteLayout() 
+        let image = new Image(Source = FileImageSource.op_Implicit thumb)
+        let store = new Label(TextColor = color)
+        store.SetBinding(Label.TextProperty, storeBindingPath)
+        innerLayout.Children.Add(image, new Rectangle(0., 0., 0.3, 1.), AbsoluteLayoutFlags.All)
+        innerLayout.Children.Add(store, new Rectangle(1., 0., 0.7, 1.), AbsoluteLayoutFlags.All)
+
+        let price = new Label(TextColor = color, HorizontalOptions = LayoutOptions.End)
+        price.SetBinding(Label.TextProperty, priceBindingPath, stringFormat = "{0:C2}")
+        layout.Children.Add(innerLayout, new Rectangle(0., 0., 0.3, 1.), AbsoluteLayoutFlags.All)
+        layout.Children.Add(price, new Rectangle(1., 0., 0.7, 1.), AbsoluteLayoutFlags.All)
+
+        layout
+
+
     let list   = 
         new ListView(
             ItemTemplate = new DataTemplate(fun _ ->
             
                 let name        = new Label(HorizontalOptions = LayoutOptions.Start, VerticalOptions = LayoutOptions.Start)
-                let higherStore = new Label(TextColor = Color.Red)
-                let high        = new Label(TextColor = Color.Red, HorizontalOptions = LayoutOptions.End)
-                let lowerStore  = new Label(TextColor = Color.Olive)
-                let low         = new Label(TextColor = Color.Olive, HorizontalOptions = LayoutOptions.End)
                 let average     = new Label(HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Start)
         
                 let layout = 
@@ -21,22 +35,15 @@ type ListPageExample() as self =
                     layout.RowDefinitions.Add(new RowDefinition())
                     layout.RowDefinitions.Add(new RowDefinition())
                     layout.RowDefinitions.Add(new RowDefinition())
-                    layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(0.5, GridUnitType.Star)))
-                    layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(0.30, GridUnitType.Star)))
-                    layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(0.20, GridUnitType.Star)))
+                    layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(0.4, GridUnitType.Star)))
+                    layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(0.6, GridUnitType.Star)))
                     layout.Children.Add(name,        0, 0)
-                    layout.Children.Add(average,     1, 3, 0, 1)
-                    layout.Children.Add(higherStore, 1, 1)
-                    layout.Children.Add(high,        2, 1)
-                    layout.Children.Add(lowerStore,  1, 2)
-                    layout.Children.Add(low,         2, 2)
+                    layout.Children.Add(average,     1, 0)
+                    layout.Children.Add(priceLayout "icon.png" Color.Red "HigherStore" "High", 1, 1)
+                    layout.Children.Add(priceLayout "icon.png" Color.Olive "LowerStore" "Low", 1, 2)
                     layout
-                
+
                 name.SetBinding(Label.TextProperty, "Title")
-                higherStore.SetBinding(Label.TextProperty, "HigherStore")
-                high.SetBinding(Label.TextProperty, "High", stringFormat = "{0:C2}")
-                lowerStore.SetBinding(Label.TextProperty, "LowerStore")
-                low.SetBinding(Label.TextProperty, "Low", stringFormat = "{0:C2}")
                 average.SetBinding(Label.TextProperty, "Average", stringFormat = "Avg. {0:C2}")
 
                 box (new ViewCell(View = layout))),
