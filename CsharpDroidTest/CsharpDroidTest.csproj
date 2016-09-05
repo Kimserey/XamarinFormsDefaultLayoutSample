@@ -104,6 +104,16 @@
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_thumb_down_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_thumb_down_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_thumb_up_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_thumb_up_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_thumb_down_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_thumb_up_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_thumb_down_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_thumb_up_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_thumb_down_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_thumb_up_black_24dp.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

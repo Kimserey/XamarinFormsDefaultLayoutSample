@@ -9,16 +9,15 @@ type ListPageExample() as self =
         let layout = new AbsoluteLayout()
 
         let innerLayout = new AbsoluteLayout() 
-        let image = new Image(Source = FileImageSource.op_Implicit thumb)
-        let store = new Label(TextColor = color)
+        let image = new Image(Source = FileImageSource.op_Implicit thumb, VerticalOptions = LayoutOptions.Center)
+        let store = new Label(TextColor = color, HorizontalOptions = LayoutOptions.Start, VerticalOptions = LayoutOptions.Center)
+        let price = new Label(TextColor = color, HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Center)
         store.SetBinding(Label.TextProperty, storeBindingPath)
-        innerLayout.Children.Add(image, new Rectangle(0., 0., 0.3, 1.), AbsoluteLayoutFlags.All)
-        innerLayout.Children.Add(store, new Rectangle(1., 0., 0.7, 1.), AbsoluteLayoutFlags.All)
-
-        let price = new Label(TextColor = color, HorizontalOptions = LayoutOptions.End)
         price.SetBinding(Label.TextProperty, priceBindingPath, stringFormat = "{0:C2}")
-        layout.Children.Add(innerLayout, new Rectangle(0., 0., 0.3, 1.), AbsoluteLayoutFlags.All)
-        layout.Children.Add(price, new Rectangle(1., 0., 0.7, 1.), AbsoluteLayoutFlags.All)
+        innerLayout.Children.Add(image, new Rectangle(0., 0., 0.4, 1.), AbsoluteLayoutFlags.All)
+        innerLayout.Children.Add(store, new Rectangle(1., 0., 0.6, 1.), AbsoluteLayoutFlags.All)
+        layout.Children.Add(innerLayout, new Rectangle(0., 0., 0.6, 1.), AbsoluteLayoutFlags.All)
+        layout.Children.Add(price, new Rectangle(1., 0., 0.4, 1.), AbsoluteLayoutFlags.All)
 
         layout
 
@@ -39,8 +38,8 @@ type ListPageExample() as self =
                     layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(0.6, GridUnitType.Star)))
                     layout.Children.Add(name,        0, 0)
                     layout.Children.Add(average,     1, 0)
-                    layout.Children.Add(priceLayout "icon.png" Color.Red "HigherStore" "High", 1, 1)
-                    layout.Children.Add(priceLayout "icon.png" Color.Olive "LowerStore" "Low", 1, 2)
+                    layout.Children.Add(priceLayout "ic_thumb_up_black_24dp.png" Color.Olive "LowerStore" "Low", 1, 1)
+                    layout.Children.Add(priceLayout "ic_thumb_down_black_24dp.png" Color.Red "HigherStore" "High", 1, 2)
                     layout
 
                 name.SetBinding(Label.TextProperty, "Title")
