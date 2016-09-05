@@ -2,6 +2,59 @@
 
 open Xamarin.Forms
 
+type ListPageExample() as self =
+    inherit ContentPage(Title = "List example")
+
+    let list   = 
+        new ListView(
+            ItemTemplate = new DataTemplate(fun _ ->
+            
+                let name        = new Label(HorizontalOptions = LayoutOptions.Start, VerticalOptions = LayoutOptions.Start)
+                let higherStore = new Label(TextColor = Color.Red)
+                let high        = new Label(TextColor = Color.Red, HorizontalOptions = LayoutOptions.End)
+                let lowerStore  = new Label(TextColor = Color.Olive)
+                let low         = new Label(TextColor = Color.Olive, HorizontalOptions = LayoutOptions.End)
+                let average     = new Label(HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Start)
+        
+                let layout = 
+                    let layout = new Grid(Padding = new Thickness(15.))
+                    layout.RowDefinitions.Add(new RowDefinition())
+                    layout.RowDefinitions.Add(new RowDefinition())
+                    layout.RowDefinitions.Add(new RowDefinition())
+                    layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(0.5, GridUnitType.Star)))
+                    layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(0.30, GridUnitType.Star)))
+                    layout.ColumnDefinitions.Add(new ColumnDefinition(Width = new GridLength(0.20, GridUnitType.Star)))
+                    layout.Children.Add(name,        0, 0)
+                    layout.Children.Add(average,     1, 3, 0, 1)
+                    layout.Children.Add(higherStore, 1, 1)
+                    layout.Children.Add(high,        2, 1)
+                    layout.Children.Add(lowerStore,  1, 2)
+                    layout.Children.Add(low,         2, 2)
+                    layout
+                
+                name.SetBinding(Label.TextProperty, "Title")
+                higherStore.SetBinding(Label.TextProperty, "HigherStore")
+                high.SetBinding(Label.TextProperty, "High", stringFormat = "{0:C2}")
+                lowerStore.SetBinding(Label.TextProperty, "LowerStore")
+                low.SetBinding(Label.TextProperty, "Low", stringFormat = "{0:C2}")
+                average.SetBinding(Label.TextProperty, "Average", stringFormat = "Avg. {0:C2}")
+
+                box (new ViewCell(View = layout))),
+            ItemsSource = [ 
+                { Title = "1"; HigherStore = "Tesco"; High = 10.0m; LowerStore = "Tesco"; Low = 10.0m; Average = 10.0m }
+                { Title = "2"; HigherStore = "Tesco"; High = 10.0m; LowerStore = "Tesco"; Low = 10.0m; Average = 10.0m }
+                { Title = "3"; HigherStore = "Tesco"; High = 10.0m; LowerStore = "Tesco"; Low = 10.0m; Average = 10.0m }
+                { Title = "4"; HigherStore = "Tesco"; High = 10.0m; LowerStore = "Tesco"; Low = 10.0m; Average = 10.0m }
+            ],
+            RowHeight = 150)
+    
+    let layout = new StackLayout()
+
+    do
+        layout.Children.Add(list)
+        self.Content <- layout
+
+
 type GridPageExample() as self =
     inherit ContentPage(Title = "Grid example")
 
@@ -139,12 +192,13 @@ type TabPage() as self =
     inherit TabbedPage()
 
     do
+        self.Children.Add(new ListPageExample())
         self.Children.Add(new GridPageExample())
+        self.Children.Add(new RelativePage())
+        self.Children.Add(new AbsolutePage())
         self.Children.Add(new AbsolutePageExample())
         self.Children.Add(new AbsolutePageExample'())
         self.Children.Add(new AbsolutePageExample''())
-        self.Children.Add(new AbsolutePage())
-        self.Children.Add(new RelativePage())
 
 type App() as self =
     inherit Application()
