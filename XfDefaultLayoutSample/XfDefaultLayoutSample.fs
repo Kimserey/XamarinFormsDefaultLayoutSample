@@ -9,15 +9,15 @@ type ListPageExample() as self =
         let layout = new AbsoluteLayout()
 
         let innerLayout = new AbsoluteLayout() 
-        let image = new Image(Source = FileImageSource.op_Implicit thumb, VerticalOptions = LayoutOptions.Center)
+        let image = new Image(Source = FileImageSource.op_Implicit thumb)
         let store = new Label(TextColor = color, HorizontalOptions = LayoutOptions.Start, VerticalOptions = LayoutOptions.Center)
         let price = new Label(TextColor = color, HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Center)
         store.SetBinding(Label.TextProperty, storeBindingPath)
         price.SetBinding(Label.TextProperty, priceBindingPath, stringFormat = "{0:C2}")
-        innerLayout.Children.Add(image, new Rectangle(0., 0., 0.4, 1.), AbsoluteLayoutFlags.All)
-        innerLayout.Children.Add(store, new Rectangle(1., 0., 0.6, 1.), AbsoluteLayoutFlags.All)
-        layout.Children.Add(innerLayout, new Rectangle(0., 0., 0.6, 1.), AbsoluteLayoutFlags.All)
-        layout.Children.Add(price, new Rectangle(1., 0., 0.4, 1.), AbsoluteLayoutFlags.All)
+        innerLayout.Children.Add(image, new Rectangle(0., 0., 0.3, 1.), AbsoluteLayoutFlags.All)
+        innerLayout.Children.Add(store, new Rectangle(1., 0., 0.7, 1.), AbsoluteLayoutFlags.All)
+        layout.Children.Add(innerLayout, new Rectangle(0., 0., 0.5, 1.), AbsoluteLayoutFlags.All)
+        layout.Children.Add(price, new Rectangle(1., 0., 0.5, 1.), AbsoluteLayoutFlags.All)
 
         layout
 
