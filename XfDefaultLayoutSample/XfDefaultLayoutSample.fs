@@ -2,6 +2,46 @@
 
 open Xamarin.Forms
 
+type NumberInput() as self =
+    inherit ContentPage(Title = "Num")
+
+    let layout = 
+        let l = new AbsoluteLayout()
+
+        let entry = new Entry(Keyboard = Keyboard.Numeric)
+
+        let layout = new Grid()
+        let zero = new Button(Text = "0", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        let one = new Button(Text = "1", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        let two = new Button(Text = "2", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        let three = new Button(Text = "3", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        let four = new Button(Text = "4", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        let five = new Button(Text = "5", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        let six = new Button(Text = "6", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        let seven = new Button(Text = "7", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        let eight = new Button(Text = "8", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        let nine = new Button(Text = "9", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        let dot = new Button(Text = ".", HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 100.)
+        layout.Children.Add(one, 0, 0)
+        layout.Children.Add(two, 1, 0)
+        layout.Children.Add(three, 2, 0)
+        layout.Children.Add(four, 0, 1)
+        layout.Children.Add(five, 1, 1)
+        layout.Children.Add(six, 2, 1)
+        layout.Children.Add(seven, 0, 2)
+        layout.Children.Add(eight, 1, 2)
+        layout.Children.Add(nine, 2, 2)
+        layout.Children.Add(zero, 1, 2)
+        layout.Children.Add(dot, 0, 3)
+
+
+        l.Children.Add(entry, new Rectangle(0., 0., 1., 0.1), AbsoluteLayoutFlags.All)
+        l.Children.Add(layout, new Rectangle(0., 1., 1., 0.9), AbsoluteLayoutFlags.All)
+        l
+
+    do
+        self.Content <- new Frame(Content = layout)
+
 type ListPageExample() as self =
     inherit ContentPage(Title = "List example")
 
@@ -199,6 +239,7 @@ type TabPage() as self =
     inherit TabbedPage()
 
     do
+        self.Children.Add(new NumberInput())
         self.Children.Add(new ListPageExample())
         self.Children.Add(new GridPageExample())
         self.Children.Add(new RelativePage())
